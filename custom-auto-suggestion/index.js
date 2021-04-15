@@ -32,28 +32,36 @@ $(function () {
     },
     _renderMenu: function (ul, items) {
       var that = this;
+      var checkbox =
+        " <div class='custom-control custom-switch'>  <input checked type='checkbox' id='customSwitch' class='custom-control-input'/>  </div>";
+      var suggestion_li = "<li class='ui-autocomplete-category'>" + "suggestions" + checkbox + "</li>";
+      var collection_li = "<li class='ui-autocomplete-category'>" + "collections" + checkbox + "</li>";
+      var product_li = "<li class='ui-autocomplete-category'>" + "products" + checkbox + "</li>";
+
       // Suggestions block
-      ul.append("<li class='ui-autocomplete-category'>" + "suggestions" + "</li>");
+      ul.append(suggestion_li);
       $.each(items, function (index, item) {
         var li;
         if (item.category === "suggestions") {
           li = that._renderItemData(ul, item);
           li.attr("aria-label", "suggestions" + " : " + item.label);
+          li.attr("class", "suggestion-item");
         }
       });
 
       // Collections block
-      ul.append("<li class='ui-autocomplete-category'>" + "collections" + "</li>");
+      ul.append(collection_li);
       $.each(items, function (index, item) {
         var li;
         if (item.category === "collections") {
           li = that._renderItemData(ul, item);
           li.attr("aria-label", "collections" + " : " + item.label);
+          li.attr("class", "collection-item");
         }
       });
 
       // Products block
-      ul.append("<li class='ui-autocomplete-category'>" + "products" + "</li>");
+      ul.append(product_li);
       $.each(items, function (index, item) {
         var li;
         if (item.category === "products") {
