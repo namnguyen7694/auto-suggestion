@@ -30,16 +30,28 @@ $(function () {
         )
         .appendTo(ul);
     },
+
+    _handleCheckbox: function (target, itemClassName) {
+      $(target).change(function () {
+        if (!this.checked) {
+          $(itemClassName).hide();
+        } else {
+          $(itemClassName).show();
+        }
+      });
+    },
+
     _renderMenu: function (ul, items) {
       var that = this;
-      var checkbox =
-        " <div class='custom-control custom-switch'>  <input checked type='checkbox' id='customSwitch' class='custom-control-input'/>  </div>";
-      var suggestion_li = "<li class='ui-autocomplete-category'>" + "suggestions" + checkbox + "</li>";
-      var collection_li = "<li class='ui-autocomplete-category'>" + "collections" + checkbox + "</li>";
-      var product_li = "<li class='ui-autocomplete-category'>" + "products" + checkbox + "</li>";
+      var suggestion_checkbox =
+        " <div class='custom-control custom-switch'>  <input checked type='checkbox' id='suggestion-checkbox' class='custom-control-input'/>  </div>";
+      var collection_checkbox =
+        " <div class='custom-control custom-switch'>  <input checked type='checkbox' id='collection-checkbox' class='custom-control-input'/>  </div>";
+      var product_checkbox =
+        " <div class='custom-control custom-switch'>  <input checked type='checkbox' id='product-checkbox' class='custom-control-input'/>  </div>";
 
       // Suggestions block
-      ul.append(suggestion_li);
+      ul.append("<li class='ui-autocomplete-category'>" + "suggestions" + suggestion_checkbox + "</li>");
       $.each(items, function (index, item) {
         var li;
         if (item.category === "suggestions") {
@@ -50,7 +62,7 @@ $(function () {
       });
 
       // Collections block
-      ul.append(collection_li);
+      ul.append("<li class='ui-autocomplete-category'>" + "collections" + collection_checkbox + "</li>");
       $.each(items, function (index, item) {
         var li;
         if (item.category === "collections") {
@@ -61,7 +73,7 @@ $(function () {
       });
 
       // Products block
-      ul.append(product_li);
+      ul.append("<li class='ui-autocomplete-category'>" + "products" + product_checkbox + "</li>");
       $.each(items, function (index, item) {
         var li;
         if (item.category === "products") {
@@ -70,6 +82,10 @@ $(function () {
           li.attr("class", "product-item");
         }
       });
+      
+      this._handleCheckbox("#suggestion-checkbox", ".suggestion-item");
+      this._handleCheckbox("#collection-checkbox", ".collection-item");
+      this._handleCheckbox("#product-checkbox", ".product-item");
     },
   });
 
