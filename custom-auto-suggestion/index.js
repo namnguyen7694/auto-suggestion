@@ -1,4 +1,4 @@
-$(function () {
+function autoSuggestion(categories = ["suggestions", "collections", "products"]) {
   //customize for support category
   $.widget("custom.cate_complete", $.ui.autocomplete, {
     _create: function () {
@@ -43,49 +43,36 @@ $(function () {
 
     _renderMenu: function (ul, items) {
       var that = this;
-      var suggestion_checkbox =
-        " <div class='custom-control custom-switch'>  <input checked type='checkbox' id='suggestion-checkbox' class='custom-control-input'/>  </div>";
-      var collection_checkbox =
-        " <div class='custom-control custom-switch'>  <input checked type='checkbox' id='collection-checkbox' class='custom-control-input'/>  </div>";
-      var product_checkbox =
-        " <div class='custom-control custom-switch'>  <input checked type='checkbox' id='product-checkbox' class='custom-control-input'/>  </div>";
-
-      // Suggestions block
-      ul.append("<li class='ui-autocomplete-category'>" + "suggestions" + suggestion_checkbox + "</li>");
-      $.each(items, function (index, item) {
-        var li;
-        if (item.category === "suggestions") {
-          li = that._renderItemData(ul, item);
-          li.attr("aria-label", "suggestions" + " : " + item.label);
-          li.attr("class", "suggestion-item");
-        }
-      });
-
-      // Collections block
-      ul.append("<li class='ui-autocomplete-category'>" + "collections" + collection_checkbox + "</li>");
-      $.each(items, function (index, item) {
-        var li;
-        if (item.category === "collections") {
-          li = that._renderItemData(ul, item);
-          li.attr("aria-label", "collections" + " : " + item.label);
-          li.attr("class", "collection-item");
-        }
-      });
-
-      // Products block
-      ul.append("<li class='ui-autocomplete-category'>" + "products" + product_checkbox + "</li>");
-      $.each(items, function (index, item) {
-        var li;
-        if (item.category === "products") {
-          li = that._renderProduct(ul, item);
-          li.attr("aria-label", "products" + " : " + item.label);
-          li.attr("class", "product-item");
-        }
-      });
-      
-      this._handleCheckbox("#suggestion-checkbox", ".suggestion-item");
-      this._handleCheckbox("#collection-checkbox", ".collection-item");
-      this._handleCheckbox("#product-checkbox", ".product-item");
+      for (var category of categories) {
+        var container = $("<div> </div", {
+          class: "custom-control custom-switch",
+        });
+        $("<input />", { type: "checkbox", id: `${category}-checkbox`, checked: true, value: category }).appendTo(
+          container
+        );
+        var li = $("<li>", {
+          text: category,
+          class: "ui-autocomplete-category",
+        });
+        $(container).appendTo($(li));
+        ul.append(li);
+        
+        $.each(items, function (index, item) {
+          var li;
+          if (item.category === category) {
+            if (category === "products") {
+              li = that._renderProduct(ul, item);
+              li.attr("aria-label", category + " : " + item.label);
+              li.attr("class", `${category}-item`);
+            } else {
+              li = that._renderItemData(ul, item);
+              li.attr("aria-label", category + " : " + item.label);
+              li.attr("class", `${category}-item`);
+            }
+          }
+        });
+        that._handleCheckbox(`#${category}-checkbox`, `.${category}-item`);
+      }
     },
   });
 
@@ -97,4 +84,4 @@ $(function () {
       response([...suggestions, ...collections, ...products]);
     },
   });
-});
+}

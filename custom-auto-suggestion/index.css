@@ -3,7 +3,7 @@
   border: 0.2rem solid #d6d9dc;
   box-shadow: 0rem 1.2rem 4.8rem rgba(0, 0, 0, 0.18);
   border-radius: 1.2rem;
-  height: 60rem;
+  max-height: 60rem;
   overflow-y: scroll;
 }
 
@@ -17,27 +17,27 @@
   border-color: rgb(88, 141, 187) !important;
 }
 
-.ui-menu-item.product-item {
+.ui-menu-item.products-item {
   display: flex;
   flex-direction: row-reverse;
   width: 100%;
 }
-.product-item:hover {
+.products-item:hover {
   background-color: rgb(88, 141, 187) !important;
 }
 
-.product-item .ui-menu-item-wrapper {
+.products-item .ui-menu-item-wrapper {
   width: 28rem;
 }
-.product-item img {
+.products-item img {
   width: 10rem !important;
   height: 12rem;
   object-fit: cover;
 }
-.product-item h1 {
+.products-item h1 {
   font-size: 1.8rem;
 }
-.product-item h2 {
+.products-item h2 {
   font-size: 1.6rem;
   font-weight: normal;
 }
