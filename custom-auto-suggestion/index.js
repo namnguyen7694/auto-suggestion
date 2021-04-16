@@ -61,11 +61,11 @@ function autoSuggestion(categories = ["suggestions", "collections", "products"])
           if (item.category === category) {
             if (category === "products") {
               li = that._renderProduct(ul, item);
-              li.attr("aria-label", category + " : " + item.label);
+              li.attr("aria-label", category + " : " + item.value);
               li.attr("class", `${category}-item`);
             } else {
               li = that._renderItemData(ul, item);
-              li.attr("aria-label", category + " : " + item.label);
+              li.attr("aria-label", category + " : " + item.value);
               li.attr("class", `${category}-item`);
             }
           }
