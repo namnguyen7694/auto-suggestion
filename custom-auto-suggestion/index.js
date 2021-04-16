@@ -1,5 +1,4 @@
 function autoSuggestion(categories = ["suggestions", "collections", "products"]) {
-  //customize for support category
   $.widget("custom.cate_complete", $.ui.autocomplete, {
     _create: function () {
       this._super();
@@ -56,7 +55,7 @@ function autoSuggestion(categories = ["suggestions", "collections", "products"])
         });
         $(container).appendTo($(li));
         ul.append(li);
-        
+
         $.each(items, function (index, item) {
           var li;
           if (item.category === category) {
@@ -80,8 +79,11 @@ function autoSuggestion(categories = ["suggestions", "collections", "products"])
     delay: 0,
     source: async function (request, response) {
       const data = await handleSearch(request.term);
-      const { suggestions, collections, products } = data;
-      response([...suggestions, ...collections, ...products]);
+      let resp = [];
+      for (var category of categories) {
+        resp.push(...data[category]);
+      }
+      response(resp);
     },
   });
 }
