@@ -6,26 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Demo Custom-auto-suggestion</title>
 
-    <!-- JQuery & Axios CDN -->
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+    <!-- 1.  jQuery, jQuery-ui & Axios CDN -->
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
 
-    <!--Import custom-auto-suggestion search script & style -->
+    <!-- 2.Import custom-auto-suggestion script & style -->
     <script src="/auto-suggestion/custom-auto-suggestion/index.js"></script>
+    <link rel="stylesheet" href="/auto-suggestion/custom-auto-suggestion/index.css" />
+
+    <!-- 4. Run our script with optional parameter Categories array -->
     <script>
       $(document).ready(function () {
         autoSuggestion();
       });
-    </script>
-    <link rel="stylesheet" href="/auto-suggestion/custom-auto-suggestion/index.css" />
-    <!--Import custom-auto-suggestion search script & style -->
+    </script> 
 
     <!-- Customize your style here -->
-    <script src="api.js"></script>
     <link rel="stylesheet" href="style.css" />
-    <!-- Customize your style -->
+
+    <!-- Your script & handle api -->
+    <script src="api.js"></script>
   </head>
   <body>
     <div id="demo-auto-complete">
