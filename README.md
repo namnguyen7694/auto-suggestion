@@ -25,8 +25,8 @@ _Example_:
 
 2. Require script & css style from folder **custom-auto-suggestion**:
 ```
-<script src="/auto-suggestion/custom-auto-suggestion/index.js"></script>
-<link rel="stylesheet" href="/auto-suggestion/custom-auto-suggestion/index.css" />
+<script src="custom-auto-suggestion/index.js"></script>
+<link rel="stylesheet" href="custom-auto-suggestion/index.css" />
 ```
 3. Set your Search box input with **id="custom-auto-complete"**
 4. Run our script with optional parameter **Categories array** (you can change order of these block). By default, categories order is ["suggestions", "collections", "products"]
