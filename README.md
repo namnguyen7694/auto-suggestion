@@ -1,6 +1,8 @@
 # DEMO: 
 Open index.html file in root folder to run demo.
 
+Try to type "b", "bo" or other word to see other results.
+
 # FEATURES:
 - [x] Dynamic block suggestion order & block category name
 - [x] Turn on/off the display of each block with the checkbox 
@@ -23,11 +25,14 @@ _Example_:
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
 ```
 
-2. Require script & css style from folder **custom-auto-suggestion**:
+2. Require script & css style to the relative path of folder **custom-auto-suggestion**:
+
+_Example_:
 ```
 <script src="custom-auto-suggestion/index.js"></script>
 <link rel="stylesheet" href="custom-auto-suggestion/index.css" />
 ```
+
 3. Set your Search box input with **id="custom-auto-complete"**
 4. Run our script with optional parameter **Categories array** (you can change order of these block). By default, categories order is ["suggestions", "collections", "products"]
 ```
@@ -44,6 +49,6 @@ _Example_:
  _**bold** property is required_
  
 #### JSON Data return structure : 
-  {category_key : [data] }
+    {category_key : [data] }
  
 
