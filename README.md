@@ -1,8 +1,20 @@
-## GUIDE: 
+# DEMO: 
+Open index.html file in root folder to run demo.
 
-# In your html file with Search box input which you want to apply suggestion:
+# FEATURES:
+- [x] Dynamic block suggestion order & block category name
+- [x] Turn on/off the display of each block with the checkbox 
+- [x] Support Product card display (with category name "products")
+- [x] Support remote data source (following our sample structure below)
+- [x] Responsive
+
+
+# GUIDE TO USE IN YOUR SEARCH BOX:
+
+## In your html file with Search box input which you want to apply suggestion:
 
 1. Require **jQuery, jQuery-ui** (and Axios when you use axios to fetch your api) CDN as below:
+
 _Example_:
 ```
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -17,7 +29,7 @@ _Example_:
 <link rel="stylesheet" href="/auto-suggestion/custom-auto-suggestion/index.css" />
 ```
 3. Set your Search box input with **id="custom-auto-complete"**
-4. Run our script with optional parameter **Categories array** (you can change order of block). By default, categories order is ["suggestions", "collections", "products"]
+4. Run our script with optional parameter **Categories array** (you can change order of these block). By default, categories order is ["suggestions", "collections", "products"]
 ```
 <script>
   $(document).ready(function () {
@@ -25,4 +37,13 @@ _Example_:
   });
 </script>
 ```
+5. Define an async **handleSearch** function in your script to fetch data for auto_complete source
+#### Api data sample property:
+* Product : { **category**, id, **value**, brand, price, image, label, url }
+* Collection, Term and other Block: { **category**, id, **value**, url }
+ _**bold** property is required_
+ 
+#### JSON Data return structure : 
+  {category_key : [data] }
+ 
 
